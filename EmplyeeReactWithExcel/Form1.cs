@@ -26,40 +26,40 @@ namespace EmplyeeReactWithExcel
             try
             {
 
-                // excel template
-                //string excelTemplateFilePath = @"C:\Users\Lenovo\Desktop\AddExcel\Employee.xlsx";
+                //excel template
+                string excelTemplateFilePath = @"C:\Users\Lenovo\Desktop\AddExcel\Employee.xlsx";
                 //create Excel app instance
-                //Excel.Application excelApp = new Excel.Application();
-                //Save Array of Byte in Hard
-                //byte[] myFileByte = Properties.Resources.Employee;
+                Excel.Application excelApp = new Excel.Application();
+               // Save Array of Byte in Hard
+                byte[] myFileByte = Properties.Resources.Employee;
 
-                //System.IO.File.WriteAllBytes(excelTemplateFilePath, myFileByte);
-
-
-                //// open statistics template file
-                //excelApp.Workbooks.Open(excelTemplateFilePath);
+                System.IO.File.WriteAllBytes(excelTemplateFilePath, myFileByte);
 
 
+                // open statistics template file
+                excelApp.Workbooks.Open(excelTemplateFilePath);
 
-                //Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
+
+
+                Excel._Worksheet workSheet = (Excel.Worksheet)excelApp.ActiveSheet;
                 EmployeeTaskEntities dbx = new EmployeeTaskEntities();
                
              var cellValues = dbx.GetAllEmployee().ToList();
                 int CountOfRow = cellValues.Count();
-              
-                //var row = 1;
 
-                //foreach (var item in cellValues)
-                //{
-                //    row++;           
-                //    workSheet.Cells[row, "A"].Value = item.EmpId;
-                //    workSheet.Cells[row, "B"].Value = item.EmpName;
-                //    workSheet.Cells[row, "C"].Value = item.Age;
-                //    workSheet.Cells[row, "D"] = item.Phone;
-                //    workSheet.Cells[row, "E"] = item.Department;
-                //}
+                var row = 1;
 
-                //workSheet.SaveAs(excelTemplateFilePath);
+                foreach (var item in cellValues)
+                {
+                    row++;
+                    workSheet.Cells[row, "A"].Value = item.EmpId;
+                    workSheet.Cells[row, "B"].Value = item.EmpName;
+                    workSheet.Cells[row, "C"].Value = item.Age;
+                    workSheet.Cells[row, "D"] = item.Phone;
+                    workSheet.Cells[row, "E"] = item.Department;
+                }
+
+                workSheet.SaveAs(excelTemplateFilePath);
                 //seconed Try
 
                 string excelTemplateFilePath2 = @"C:\Users\Lenovo\Desktop\AddExcel\Employee22.xlsx";
@@ -81,18 +81,17 @@ namespace EmplyeeReactWithExcel
 
                 for (int i = 0; i < CountOfRow; i++)
                 {
-                    for (int j = 0; j < 6; j++)
-                    {
+                  
                         //Excel.Range rng = ws.Cells[i, j] as Excel.Range;
                         // rng.Cells[i][1].Value = cellValues[i].EmpId;
 
 
-                        //ws.Range[ws.Cells[i + 1, 1]].Value = cellValues[i].EmpId;
-                        //ws.Range[ws.Cells[i + 1, 2]].Value = cellValues[i].EmpName;
-                        //ws.Range[ws.Cells[i + 1, 3]].Value = cellValues[i].Age;
-                        //ws.Range[ws.Cells[i + 1, 4]].Value = cellValues[i].Phone;
-                        //ws.Range[ws.Cells[i + 1, 5]].Value = cellValues[i].Department;
-                    }
+                        ws.Range[ws.Cells[i + 1, 1]].Value = cellValues[i].EmpId;
+                        ws.Range[ws.Cells[i + 1, 2]].Value = cellValues[i].EmpName;
+                        ws.Range[ws.Cells[i + 1, 3]].Value = cellValues[i].Age;
+                        ws.Range[ws.Cells[i + 1, 4]].Value = cellValues[i].Phone;
+                        ws.Range[ws.Cells[i + 1, 5]].Value = cellValues[i].Department;
+                  
 
 
 
