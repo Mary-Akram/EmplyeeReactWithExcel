@@ -62,7 +62,7 @@ namespace EmplyeeReactWithExcel
                 }
 
                 workSheet.SaveAs(excelTemplateFilePath);
-                excelApp2.Quit();
+                excelApp.Quit();
 
 
                 //seconed Try
