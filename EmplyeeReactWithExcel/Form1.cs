@@ -30,7 +30,7 @@ namespace EmplyeeReactWithExcel
                 string excelTemplateFilePath = @"C:\Users\Lenovo\Desktop\AddExcel\Employee.xlsx";
                 //create Excel app instance
                 Excel.Application excelApp = new Excel.Application();
-               // Save Array of Byte in Hard
+                //Save Array of Byte in Hard
                 byte[] myFileByte = Properties.Resources.Employee;
 
                 System.IO.File.WriteAllBytes(excelTemplateFilePath, myFileByte);
@@ -48,6 +48,8 @@ namespace EmplyeeReactWithExcel
                 int CountOfRow = cellValues.Count();
 
                 var row = 1;
+                File.Delete(excelTemplateFilePath);
+
 
                 foreach (var item in cellValues)
                 {
@@ -60,6 +62,9 @@ namespace EmplyeeReactWithExcel
                 }
 
                 workSheet.SaveAs(excelTemplateFilePath);
+                excelApp2.Quit();
+
+
                 //seconed Try
 
                 string excelTemplateFilePath2 = @"C:\Users\Lenovo\Desktop\AddExcel\Employee22.xlsx";
@@ -76,8 +81,8 @@ namespace EmplyeeReactWithExcel
                 excelApp2.Workbooks.Open(excelTemplateFilePath2);
 
 
-                Excel._Worksheet ws = (Excel.Worksheet)excelApp2.ActiveSheet; 
-
+                Excel._Worksheet ws = (Excel.Worksheet)excelApp2.ActiveSheet;
+                File.Delete(excelTemplateFilePath2);
 
                 for (int i = 0; i < CountOfRow; i++)
                 {
@@ -91,7 +96,7 @@ namespace EmplyeeReactWithExcel
                         ws.Range[ws.Cells[i + 1, 3]].Value = cellValues[i].Age;
                         ws.Range[ws.Cells[i + 1, 4]].Value = cellValues[i].Phone;
                         ws.Range[ws.Cells[i + 1, 5]].Value = cellValues[i].Department;
-                  
+
 
 
 
